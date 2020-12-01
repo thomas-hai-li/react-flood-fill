@@ -1,0 +1,9 @@
+.Pixel {
+  width: 25px;
+  height: 25px;
+  border: #aaa solid 1px;
+}
+
+.Pixel--hovered {
+  background-color: #eee;
+}
