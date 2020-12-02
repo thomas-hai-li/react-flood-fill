@@ -11,6 +11,7 @@ interface Props {
   defaultDrawColor: string;
   numRows: number;
   numColumns: number;
+  tool: Tool;
   setNumRows: React.Dispatch<React.SetStateAction<number>>;
   setNumColumns: React.Dispatch<React.SetStateAction<number>>;
   setDrawColor: React.Dispatch<React.SetStateAction<string>>;
@@ -27,6 +28,7 @@ const Toolbar: React.FC<Props> = ({
   defaultDrawColor,
   numRows,
   numColumns,
+  tool,
   setNumRows,
   setNumColumns,
   setDrawColor,
@@ -53,17 +55,43 @@ const Toolbar: React.FC<Props> = ({
 
   return (
     <div className="Toolbar">
+      <div className="ToolSelect">
+        <button
+          className={`ToolIcon ${tool === Tool.Pencil ? 'ToolIcon--selected' : ''}`}
+          onClick={() => handleToolChange(Tool.Pencil)}
+        >
+          🖌
+        </button>
+        <button
+          className={`ToolIcon ${tool === Tool.Fill ? 'ToolIcon--selected' : ''}`}
+          onClick={() => handleToolChange(Tool.Fill)}
+        >
+          🌊
+        </button>
+      </div>
+      <ColorPicker defaultColor={defaultDrawColor} setDrawColor={setDrawColor} />
       <label>
         Rows
-        <input type="number" value={numRows} min={MIN_ROWS} max={MAX_ROWS} onChange={handleNumRowsChange} />
+        <input
+          className="DimensionInput"
+          type="number"
+          value={numRows}
+          min={MIN_ROWS}
+          max={MAX_ROWS}
+          onChange={handleNumRowsChange}
+        />
       </label>
       <label>
         Columns
-        <input type="number" value={numColumns} min={MIN_COLUMNS} max={MAX_COLUMNS} onChange={handleNumColumnsChange} />
+        <input
+          className="DimensionInput"
+          type="number"
+          value={numColumns}
+          min={MIN_COLUMNS}
+          max={MAX_COLUMNS}
+          onChange={handleNumColumnsChange}
+        />
       </label>
-      <button onClick={() => handleToolChange(Tool.Pencil)}>🖌</button>
-      <button onClick={() => handleToolChange(Tool.Fill)}>🌊</button>
-      <ColorPicker defaultColor={defaultDrawColor} setDrawColor={setDrawColor} />
     </div>
   );
 };

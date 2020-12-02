@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { GithubPicker, ColorResult } from 'react-color';
+import { CompactPicker, ColorResult } from 'react-color';
 import './ColorPicker.css';
 
 interface Props {
@@ -11,15 +11,15 @@ const ColorPicker: React.FC<Props> = ({ defaultColor, setDrawColor }) => {
   const [ displayColor, setDisplayColor ] = useState<string>(defaultColor);
   const [ displayPicker, setDisplayPicker ] = useState<boolean>(false);
 
-  const handleClick = () => {
+  const handleClick = (): void => {
     setDisplayPicker(!displayPicker);
   };
 
-  const handleClose = () => {
+  const handleClose = (): void => {
     setDisplayPicker(false);
   };
 
-  const handleChange = (color: ColorResult) => {
+  const handleChange = (color: ColorResult): void => {
     setDisplayColor(color.hex);
     setDrawColor(color.hex);
     setDisplayPicker(false);
@@ -33,7 +33,7 @@ const ColorPicker: React.FC<Props> = ({ defaultColor, setDrawColor }) => {
       {displayPicker ? (
         <div className="Popover">
           <div className="Cover" onClick={handleClose} />
-          <GithubPicker triangle="top-left" onChange={handleChange} />
+          <CompactPicker onChange={handleChange} />
         </div>
       ) : null}
     </div>

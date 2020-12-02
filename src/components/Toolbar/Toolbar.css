@@ -1,8 +1,37 @@
 .Toolbar {
   position: absolute;
   top: 0;
-  left: 0;
-  width: 100%;
+  align-self: center;
 
-  background-color: #71b6ff;
+  display: flex;
+  justify-content: center;
+
+  color: #fff;
+  background-color: #4da3ff;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 0px 0px 15px 15px;
+}
+
+.Toolbar > * {
+  margin: 10px;
+}
+
+.ToolIcon {
+  cursor: pointer;
+  margin: 2px;
+  border-radius: 3px;
+  background: transparent;
+  border: none;
+}
+
+.ToolIcon--selected {
+  background: #e5e5e5;
+  outline: none;
+  -webkit-box-shadow: inset 0px 0px 5px #9e9e9e;
+  -moz-box-shadow: inset 0px 0px 5px #9e9e9e;
+  box-shadow: inset 0px 0px 5px #9e9e9e;
+}
+
+.DimensionInput {
+  margin-left: 5px;
 }

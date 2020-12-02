@@ -15,15 +15,15 @@ interface Props {
 const Pixel: React.FC<Props> = ({ color, coord, drawCanvasAtCoordinate }) => {
   const [ hovered, setHovered ] = useState<Boolean>(false);
 
-  const handleMouseEnter = () => {
+  const handleMouseEnter = (): void => {
     setHovered(true);
   };
 
-  const handleMouseLeave = () => {
+  const handleMouseLeave = (): void => {
     setHovered(false);
   };
 
-  const handleClick = () => {
+  const handleClick = (): void => {
     drawCanvasAtCoordinate(coord);
   };
 

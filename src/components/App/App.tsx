@@ -27,6 +27,7 @@ const App: React.FC = () => {
         defaultDrawColor={DEFAULT_DRAW_COLOR}
         numRows={numRows}
         numColumns={numColumns}
+        tool={tool}
         setNumRows={setNumRows}
         setNumColumns={setNumColumns}
         setDrawColor={setDrawColor}
