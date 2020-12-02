@@ -1,22 +1,19 @@
 import React, { useState } from 'react';
 import Toolbar from '../Toolbar/Toolbar';
 import Canvas from '../Canvas/Canvas';
+import { Tool } from '../Toolbar/Toolbar';
 import './App.css';
 
-enum Tool {
-  Pencil,
-  Fill
-}
-
-const DEFAULT_NUM_ROWS: number = 20;
-const DEFAULT_NUM_COLUMNS: number = 20;
-const MAX_ROWS: number = 50;
-const MAX_COLUMNS: number = 50;
-const MIN_ROWS: number = 1;
-const MIN_COLUMNS: number = 1;
-
-const DEFAULT_DRAW_COLOR: string = '#000000';
-const DEFAULT_PIXEL_COLOR: string = '#ffffff';
+import {
+  DEFAULT_NUM_ROWS,
+  DEFAULT_NUM_COLUMNS,
+  MAX_COLUMNS,
+  MAX_ROWS,
+  MIN_ROWS,
+  MIN_COLUMNS,
+  DEFAULT_DRAW_COLOR,
+  DEFAULT_PIXEL_COLOR
+} from '../../constants/defaults';
 
 const App: React.FC = () => {
   const [ numRows, setNumRows ] = useState<number>(DEFAULT_NUM_ROWS);
@@ -33,6 +30,7 @@ const App: React.FC = () => {
         setNumRows={setNumRows}
         setNumColumns={setNumColumns}
         setDrawColor={setDrawColor}
+        setTool={setTool}
         canvasConstraints={{
           MAX_ROWS,
           MAX_COLUMNS,
@@ -40,9 +38,15 @@ const App: React.FC = () => {
           MIN_COLUMNS
         }}
       />
-      <Canvas numRows={numRows} numColumns={numColumns} defaultPixelColor={DEFAULT_PIXEL_COLOR} drawColor={drawColor} />
+      <Canvas
+        numRows={numRows}
+        numColumns={numColumns}
+        defaultPixelColor={DEFAULT_PIXEL_COLOR}
+        drawColor={drawColor}
+        tool={tool}
+      />
     </div>
   );
 };
 
-export { App as default, Tool };
+export default App;

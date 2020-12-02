@@ -1,14 +1,14 @@
 import React from 'react';
-import Pixel from '../Pixel/Pixel';
+import Pixel, { Coordinate } from '../Pixel/Pixel';
 import './Row.css';
 
 interface Props {
   yCoord: number;
   pixels: string[];
-  colorGridAt: (coord: { x: number; y: number }) => void;
+  drawCanvasAtCoordinate: (coord: Coordinate) => void;
 }
 
-const Row: React.FC<Props> = ({ yCoord, pixels, colorGridAt }) => {
+const Row: React.FC<Props> = ({ yCoord, pixels, drawCanvasAtCoordinate }) => {
   return (
     <div className="Row">
       {pixels.map((color, i) => {
@@ -16,7 +16,7 @@ const Row: React.FC<Props> = ({ yCoord, pixels, colorGridAt }) => {
         let coordKey = `(${xCoord}, ${yCoord})`;
         let coord = { x: xCoord, y: yCoord };
 
-        return <Pixel key={coordKey} color={color} coord={coord} handleClick={() => colorGridAt(coord)} />;
+        return <Pixel key={coordKey} color={color} coord={coord} drawCanvasAtCoordinate={drawCanvasAtCoordinate} />;
       })}
     </div>
   );

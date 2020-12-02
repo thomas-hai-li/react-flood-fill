@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 import './Pixel.css';
 
-interface Props {
-  color: string;
-  coord: {
-    x: number;
-    y: number;
-  };
-  handleClick: () => void;
+export interface Coordinate {
+  x: number;
+  y: number;
 }
 
-const Pixel: React.FC<Props> = ({ color, coord, handleClick }) => {
+interface Props {
+  color: string;
+  coord: Coordinate;
+  drawCanvasAtCoordinate: (coord: Coordinate) => void;
+}
+
+const Pixel: React.FC<Props> = ({ color, coord, drawCanvasAtCoordinate }) => {
   const [ hovered, setHovered ] = useState<Boolean>(false);
 
   const handleMouseEnter = () => {
@@ -19,6 +21,10 @@ const Pixel: React.FC<Props> = ({ color, coord, handleClick }) => {
 
   const handleMouseLeave = () => {
     setHovered(false);
+  };
+
+  const handleClick = () => {
+    drawCanvasAtCoordinate(coord);
   };
 
   const styleHovered = hovered ? 'Pixel--hovered' : '';
