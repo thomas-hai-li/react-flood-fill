@@ -10,12 +10,13 @@ const MAX_COLUMNS: number = 50;
 const MIN_ROWS: number = 2;
 const MIN_COLUMNS: number = 2;
 
-const DEFAULT_COLOR: string = '#000';
+const DEFAULT_PENCIL_COLOR: string = '#000';
+const DEFAULT_PIXEL_COLOR: string = '#fff';
 
 const App: React.FC = () => {
   const [ numRows, setNumRows ] = useState<number>(DEFAULT_NUM_ROWS);
   const [ numColumns, setNumColumns ] = useState<number>(DEFAULT_NUM_COLUMNS);
-  const [ color, setColor ] = useState<string>(DEFAULT_COLOR);
+  const [ color, setColor ] = useState<string>(DEFAULT_PENCIL_COLOR);
 
   return (
     <div className="App">
@@ -32,7 +33,7 @@ const App: React.FC = () => {
           MIN_COLUMNS
         }}
       />
-      <Canvas numRows={numRows} numColumns={numColumns} />
+      <Canvas numRows={numRows} numColumns={numColumns} defaultColor={DEFAULT_PIXEL_COLOR} />
     </div>
   );
 };

@@ -5,5 +5,5 @@
 }
 
 .Pixel--hovered {
-  background-color: #eee;
+  filter: brightness(85%);
 }

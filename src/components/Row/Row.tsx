@@ -3,20 +3,23 @@ import Pixel from '../Pixel/Pixel';
 import './Row.css';
 
 interface Props {
-  numPixels: number;
   yCoord: number;
+  pixels: string[];
+  colorGridAt: (coord: { x: number; y: number }) => void;
 }
 
-const Row: React.FC<Props> = ({ numPixels, yCoord }) => {
-  const pixels = [];
-  for (let i = 0; i < numPixels; i++) {
-    // best not to use indices as the key prop, though may suffice for since they're coordinates
-    let xCoord = i;
-    let coordKey = `(${xCoord}, ${yCoord})`;
-    pixels.push(<Pixel key={coordKey} />);
-  }
+const Row: React.FC<Props> = ({ yCoord, pixels, colorGridAt }) => {
+  return (
+    <div className="Row">
+      {pixels.map((color, i) => {
+        let xCoord = i;
+        let coordKey = `(${xCoord}, ${yCoord})`;
+        let coord = { x: xCoord, y: yCoord };
 
-  return <div className="Row">{pixels}</div>;
+        return <Pixel key={coordKey} color={color} coord={coord} handleClick={() => colorGridAt(coord)} />;
+      })}
+    </div>
+  );
 };
 
 export default Row;
