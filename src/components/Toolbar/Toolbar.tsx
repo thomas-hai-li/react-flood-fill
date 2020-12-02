@@ -1,13 +1,16 @@
 import React from 'react';
+import ColorPicker from '../ColorPicker/ColorPicker';
+
 import './Toolbar.css';
 
 interface Props {
-  defaultColor: string;
+  defaultDrawColor: string;
   numRows: number;
   numColumns: number;
   setNumRows: React.Dispatch<React.SetStateAction<number>>;
   setNumColumns: React.Dispatch<React.SetStateAction<number>>;
-  constants: {
+  setDrawColor: React.Dispatch<React.SetStateAction<string>>;
+  canvasConstraints: {
     MAX_ROWS: number;
     MAX_COLUMNS: number;
     MIN_ROWS: number;
@@ -15,8 +18,16 @@ interface Props {
   };
 }
 
-const Toolbar: React.FC<Props> = ({ defaultColor, numRows, numColumns, setNumRows, setNumColumns, constants }) => {
-  const { MAX_ROWS, MAX_COLUMNS, MIN_ROWS, MIN_COLUMNS } = constants;
+const Toolbar: React.FC<Props> = ({
+  defaultDrawColor,
+  numRows,
+  numColumns,
+  setNumRows,
+  setNumColumns,
+  setDrawColor,
+  canvasConstraints
+}) => {
+  const { MAX_ROWS, MAX_COLUMNS, MIN_ROWS, MIN_COLUMNS } = canvasConstraints;
 
   const handleNumRowsChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const num = parseInt(event.target.value);
@@ -40,6 +51,7 @@ const Toolbar: React.FC<Props> = ({ defaultColor, numRows, numColumns, setNumRow
         Columns
         <input type="number" value={numColumns} min={MIN_COLUMNS} max={MAX_COLUMNS} onChange={handleNumColumnsChange} />
       </label>
+      <ColorPicker defaultColor={defaultDrawColor} setDrawColor={setDrawColor} />
     </div>
   );
 };

@@ -1,23 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import Row from '../Row/Row';
+import { Tool } from '../App/App';
 import './Canvas.css';
 
 interface Props {
   numRows: number;
   numColumns: number;
-  defaultColor: string;
+  defaultPixelColor: string;
+  drawColor: string;
 }
 
-const Canvas: React.FC<Props> = ({ numRows, numColumns, defaultColor }) => {
+const Canvas: React.FC<Props> = ({ numRows, numColumns, defaultPixelColor, drawColor }) => {
   // grid is a 2D array of strings (strings represent the hex color of a pixel)
-  const [ grid, setGrid ] = useState<string[][]>(new Array(numRows).fill(new Array(numColumns).fill(defaultColor)));
+  const [ grid, setGrid ] = useState<string[][]>(
+    new Array(numRows).fill(new Array(numColumns).fill(defaultPixelColor))
+  );
 
   // resets the grid when number of rows or columns changes
   useEffect(
     () => {
-      setGrid(new Array(numRows).fill(new Array(numColumns).fill(defaultColor)));
+      setGrid(new Array(numRows).fill(new Array(numColumns).fill(defaultPixelColor)));
     },
-    [ numRows, numColumns ]
+    [ numRows, numColumns, defaultPixelColor ]
   );
 
   // colors the grid at the specified pixel
@@ -25,17 +29,16 @@ const Canvas: React.FC<Props> = ({ numRows, numColumns, defaultColor }) => {
     const { x, y } = coord;
 
     // deep clone the old grid
-    // var newGrid: string[][] = JSON.parse(JSON.stringify(grid));
+    var newGrid: string[][] = JSON.parse(JSON.stringify(grid));
 
-    console.log(`(${x}, ${y})`);
+    // color in the specific coord
+    newGrid.forEach((row, row_y) => {
+      if (row_y === y) {
+        row[x] = drawColor;
+      }
+    });
 
-    // newGrid.forEach((row, row_y) => {
-    //   if (row_y === y) {
-    //     row[x] = '#e3aaaa';
-    //   }
-    // });
-
-    // setGrid(newGrid);
+    setGrid(newGrid);
   };
 
   // best not to use indices as the key prop, though will suffice for identifying rows

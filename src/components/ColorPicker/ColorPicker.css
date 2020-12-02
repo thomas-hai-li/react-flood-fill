@@ -1,0 +1,31 @@
+.ColorPicker {
+  /* display: inline; */
+}
+
+.Swatch {
+  padding: 5px;
+  background: #ffffff;
+  border-radius: 1px;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, .1);
+  display: inline-block;
+  cursor: pointer;
+}
+
+.SwatchColor {
+  width: 36px;
+  height: 14px;
+  border-radius: 2px;
+}
+
+.Popover {
+  position: absolute;
+  z-index: 2;
+}
+
+.Cover {
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+}

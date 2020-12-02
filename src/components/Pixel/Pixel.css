@@ -1,7 +1,7 @@
 .Pixel {
   width: 25px;
   height: 25px;
-  border: #aaa solid 1px;
+  border: #aaaaaa solid 1px;
 }
 
 .Pixel--hovered {
